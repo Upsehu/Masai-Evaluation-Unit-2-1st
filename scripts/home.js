@@ -7,7 +7,7 @@ async function headLines(){
 
     let countries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','us']
     let country = Math.round(Math.random()* countries.length)
-    let res = await fetch(`https://newsapi.org/v2/top-headlines?country=${countries[country]}&apiKey=c1075319aec54adf9640d81abb4b8b39`)
+    let res = await fetch(`https://newsapi.org/v2/top-headlines?country=${countries[country]}&apiKey=3e79200d44404022be9039d7dd451b20`)
 
     let data = await res.json();
 

@@ -16,7 +16,7 @@ async function search(){
 
     
 
-    let res = await fetch(`https://newsapi.org/v2/top-headlines?q=${query}&apiKey=c1075319aec54adf9640d81abb4b8b39`)
+    let res = await fetch(`https://newsapi.org/v2/top-headlines?q=${query}&apiKey=3e79200d44404022be9039d7dd451b20`)
 
     let data = await res.json();
 
