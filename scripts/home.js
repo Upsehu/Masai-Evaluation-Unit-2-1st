@@ -29,6 +29,7 @@ function randomNews(newsArr){
     let index =  Math.round(Math.random() * newsArr.length - 1);
     console.log(index);
     console.log(newsArr[index]);
+    localStorage.setItem('news-data', JSON.stringify(newsArr[index]))
     showNews(newsArr[index]);
 
 };
@@ -36,6 +37,7 @@ function randomNews(newsArr){
 function showNews({author, content, description, publishedAt, title, url, urlToImage}){
 
     let div = document.createElement('div');
+    div.style.border = '1px solid black'
 
     let headline_box = document.createElement('div');
     headline_box.style.display = 'inline-block';
@@ -49,6 +51,9 @@ function showNews({author, content, description, publishedAt, title, url, urlToI
 
     let tit = document.createElement('h1');
     tit.innerText = title;
+    tit.addEventListener('click',function(){
+        window.location.href = 'news.html';
+    })
 
     let auth = document.createElement('p');
     auth.innerText = author;
@@ -58,8 +63,14 @@ function showNews({author, content, description, publishedAt, title, url, urlToI
 
     headline_box.append(tit, auth, publishAt);
 
-    
-    show.append(headline_box);
+    div.append(headline_box)
+
+    // div.addEventListener('click', function(){
+
+    //     window.location.html = 'news.html';
+    // })
+
+    show.append(div);
 }
 
 // setInterval(randomNews, 1000)
