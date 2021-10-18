@@ -34,10 +34,13 @@ function randomNews(newsArr){
 
 };
 
-function showNews({author, content, description, publishedAt, title, url, urlToImage}){
+function showNews(news){
+
+    console.log(news);
 
     let div = document.createElement('div');
     div.style.border = '1px solid black'
+    div.style.margin = '20px';
 
     let headline_box = document.createElement('div');
     headline_box.style.display = 'inline-block';
@@ -48,22 +51,36 @@ function showNews({author, content, description, publishedAt, title, url, urlToI
 
     let img_box = document.createElement('div');
     img_box.style.display = 'inline-block';
+    img_box.style.width = '50%';
+    img_box.style.height = '200px';
 
     let tit = document.createElement('h1');
-    tit.innerText = title;
+    tit.innerText = news.title;
     tit.addEventListener('click',function(){
         window.location.href = 'news.html';
     })
 
     let auth = document.createElement('p');
-    auth.innerText = author;
+    auth.innerText = news.author;
 
     let publishAt = document.createElement('p');
-    publishAt.innerText = publishedAt;
+    publishAt.innerText = news.publishedAt;
 
     headline_box.append(tit, auth, publishAt);
 
-    div.append(headline_box)
+    let descrip = document.createElement('p');
+    descrip.innerText = news.desctiption;
+
+    description_box.append(descrip);
+    
+    let img = document.createElement('img');
+    img.src = news.urlToImage;
+    img.style.height = '100%';
+
+    img_box.append(img);
+
+
+        div.append(headline_box,img_box)
 
     // div.addEventListener('click', function(){
 
