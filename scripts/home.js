@@ -1,14 +1,23 @@
+let count = 0;
+let show = document.getElementById('show');
+
 async function headLines(){
+
+    count++;
 
     let countries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','us']
     let country = Math.round(Math.random()* countries.length)
-    let res = await fetch(`https://newsapi.org/v2/top-headlines?country=${countries[country]}&apiKey=98831fd7c8ff4083bd3c2a8db27cf41f`)
+    let res = await fetch(`https://newsapi.org/v2/top-headlines?country=${countries[country]}&apiKey=c1075319aec54adf9640d81abb4b8b39`)
 
     let data = await res.json();
 
+    if(count === 12){
+        console.log('count',count);
+        clearInterval(interval); 
+    }
     console.log(data)
     randomNews(data.articles)
-    setInterval(function(){
+    let interval = setInterval(function(){
         headLines();
     }, 5000);
 }
@@ -50,12 +59,24 @@ function showNews({author, content, description, publishedAt, title, url, urlToI
     headline_box.append(tit, auth, publishAt);
 
     
-    container.append(headline_box);
+    show.append(headline_box);
 }
 
 // setInterval(randomNews, 1000)
 
 headLines()
+
+let search_btn = document.querySelector('button');
+console.log(search_btn);
+
+search_btn.addEventListener('click',() => {
+
+    let query = document.getElementById('search').value;
+    console.log(query);
+
+    localStorage.setItem('news-search', JSON.stringify(query));
+    window.location.href = 'search.html';
+})
 
 // setInterval(randomNews, 5000);
 

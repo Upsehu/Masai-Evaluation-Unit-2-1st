@@ -1,22 +1,26 @@
 async function search(){
+    console.log('search');
+    
     console.log('hello');
-    window.location.href = 'search.html';
 
-    let query = document.getElementById('search').value;
+    let query = JSON.parse(localStorage.getItem('news-search'));
     console.log(query);
 
     let res = await fetch(`https://newsapi.org/v2/top-headlines?q=${query}&apiKey=98831fd7c8ff4083bd3c2a8db27cf41f`)
 
     let data = await res.json();
 
+    console.log(data);
     showNews(data.article);
     // console.log(search);
 }    
 
 
-function showNews({author, content, description, publishedAt, title, url, urlToImage}){
+function showNews(news){
 
-    let div = document.createElement('div');
+    console.log(news);
+    news.forEach( ({author, content, description, publishedAt, title, url, urlToImage}) => {
+        let div = document.createElement('div');
 
     let headline_box = document.createElement('div');
     headline_box.style.display = 'inline-block';
@@ -41,4 +45,7 @@ function showNews({author, content, description, publishedAt, title, url, urlToI
 
     
     container.append(headline_box);
+    });
+
+    
 }
