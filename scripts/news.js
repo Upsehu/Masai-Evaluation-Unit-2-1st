@@ -8,6 +8,7 @@ let img = document.createElement('img');
 
 h1.innerText = news.title;
 img.src = news.urlToImage;
+
 container.append(h1,img);
 
 
